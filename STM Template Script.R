@@ -18,8 +18,8 @@ library(stm)
 
 
 # INGEST DATA ------------------------------------------------------------------
-processed <- textProcessor(<add text data>, 
-                           metadata = raw_data, 
+processed <- textProcessor(<df$textdata>, 
+                           metadata = <df>, 
                            removenumbers = FALSE)
 #numbers retained as 101 and 999 may appear as terms. 
 out <- prepDocuments(processed$documents, 
@@ -41,7 +41,7 @@ plotRemoved(processed$documents,
 out <- prepDocuments(processed$documents, 
                      processed$vocab, 
                      processed$meta, 
-                     lower.thresh = 10)
+                     lower.thresh = <choose cutoff>)
 # remove 17 documents and 2842 of 3099 words (9406 of 26223 tokens).
 
 
@@ -49,7 +49,7 @@ out <- prepDocuments(processed$documents,
 Ksearch <- searchK(out$documents, 
                    out$vocab, 
                    K = c(2:50), # choose range
-                   prevalence =~ Method, 
+                   prevalence =~ #<add variables from metadata if wanted>, 
                    data = out$meta)
 Ksearch
 plot(Ksearch) #learn how to interpret this properly
